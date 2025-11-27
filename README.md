@@ -118,10 +118,10 @@ Clasificarea-instrumentelor-muzicale/
 
 ---
 
-## 6. Stare Etapă (de completat de student)
+## 6. Stare Etapă 
 
 - [x] Structură repository configurată
 - [x] Dataset analizat (EDA realizată - durată, SR)
 - [x] Date preprocesate (Uniformizare $16 \text{ kHz}$, $3.0 \text{ s}$)
 - [ ] Seturi train/val/test generate (Spectrograme extrase și salvate)
-- [ ] Documentație actualizată în README + `data/README.md`
+- [x] Documentație actualizată în README + `data/README.md`
