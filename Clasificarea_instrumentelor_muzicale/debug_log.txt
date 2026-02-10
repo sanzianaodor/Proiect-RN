@@ -1,1 +1,0 @@
-Python a pornit! Argv: ['.\\src\\app\\main.py', 'tobe_37.wav']
