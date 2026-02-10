@@ -1,0 +1,15 @@
+{
+    "model": "optimized_model.h5",
+    "test_accuracy": 0.9741,
+    "test_f1_macro": 0.9729,
+    "test_precision_macro": 0.9575,
+    "test_recall_macro": 0.9531,
+    "false_negative_rate": 0.0469,
+    "false_positive_rate": 0.0156,
+    "inference_latency_ms": 212.32,
+    "improvement_vs_baseline": {
+        "accuracy": "+12.1%",
+        "f1_score": "+16.2%",
+        "latency": "--386.2%"
+    }
+}

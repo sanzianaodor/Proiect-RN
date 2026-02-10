@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Neural Audio Processor</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@500;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg-dark: #070b12;
+    --panel-bg: rgba(10, 15, 25, 0.9);
+
+    --blue-1: rgba(60, 90, 130, 0.45);
+    --blue-2: rgba(80, 120, 170, 0.35);
+    --blue-3: rgba(100, 150, 200, 0.25);
+
+    --text-main: #e6eef7;
+    --text-dim: #7f8fa6;
+}
+
+/* BODY */
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 40%, #0c1624, var(--bg-dark));
+    color: var(--text-main);
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* SVG WAVE BACKGROUND */
+.wave-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+.wave-bg svg {
+    width: 200%;
+    height: 100%;
+}
+
+.wave1 {
+    animation: moveWave 20s linear infinite;
+}
+.wave2 {
+    animation: moveWave 32s linear infinite reverse;
+}
+.wave3 {
+    animation: moveWave 45s linear infinite;
+}
+
+@keyframes moveWave {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* PANEL */
+.device-panel {
+    width: 520px;
+    background: var(--panel-bg);
+    border-radius: 12px;
+    padding: 6px;
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 70px rgba(0,0,0,0.9);
+    z-index: 2;
+}
+
+.screen-bezel {
+    background: rgba(0,0,0,0.85);
+    border-radius: 8px;
+    padding: 25px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* HEADER */
+.header-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+/* CONTROLS */
+.control-panel {
+    margin-bottom: 25px;
+    border-bottom: 1px dashed rgba(255,255,255,0.15);
+    padding-bottom: 20px;
+}
+
+.input-label {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    letter-spacing: 1.5px;
+    display: block;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    height: 42px;
+}
+
+.path-input {
+    flex: 1;
+    background: #05080f;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 0 12px;
+    font-size: 0.75rem;
+    border-radius: 3px;
+}
+
+.browse-btn {
+    width: 42px;
+    background: #0b1220;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.1rem;
+    border-radius: 3px;
+}
+
+.scan-btn {
+    background: linear-gradient(135deg, #3c5a82, #5f8fc2);
+    color: #000;
+    border: none;
+    padding: 0 26px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+/* DISPLAY */
+.instrument-display {
+    text-align: center;
+    margin: 30px 0;
+    min-height: 110px;
+}
+
+.detected-label {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+}
+
+.instrument-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.3rem;
+    color: #b9d7ff;
+    text-shadow: 0 0 14px rgba(120,170,220,0.35);
+}
+
+.progress-bg {
+    background: #060b14;
+    height: 4px;
+    border-radius: 2px;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #3c5a82, #78aee0);
+    height: 100%;
+    width: 0%;
+    transition: width 1s ease;
+}
+
+.footer-info {
+    margin-top: 30px;
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+}
+</style>
+</head>
+
+<body>
+
+<!-- FUNDAL WAVES -->
+<div class="wave-bg">
+<svg viewBox="0 0 2000 300" preserveAspectRatio="none">
+    <path class="wave1" d="M0 150 Q 100 100 200 150 T 400 150 T 600 150 T 800 150 T 1000 150 T 1200 150 T 1400 150 T 1600 150 T 1800 150 T 2000 150"
+          fill="none" stroke="var(--blue-1)" stroke-width="2"/>
+    <path class="wave2" d="M0 170 Q 120 220 240 170 T 480 170 T 720 170 T 960 170 T 1200 170 T 1440 170 T 1680 170 T 2000 170"
+          fill="none" stroke="var(--blue-2)" stroke-width="1.8"/>
+    <path class="wave3" d="M0 130 Q 140 80 280 130 T 560 130 T 840 130 T 1120 130 T 1400 130 T 1680 130 T 2000 130"
+          fill="none" stroke="var(--blue-3)" stroke-width="1.5"/>
+</svg>
+</div>
+
+<!-- UI -->
+<div class="device-panel">
+<div class="screen-bezel">
+
+<div class="header-label">
+<span>AI_INFERENCE_ENGINE_V6.2</span>
+<span id="status-text">IDLE</span>
+</div>
+
+<div class="control-panel">
+<label class="input-label">SELECT AUDIO SOURCE (.WAV)</label>
+<input type="file" id="fileInput" accept=".wav" style="display:none">
+
+<div class="input-group">
+<button class="browse-btn" onclick="openFileDialog()">📂</button>
+<input type="text" id="audio-path" class="path-input" readonly>
+<button class="scan-btn" onclick="scan()">SCAN</button>
+</div>
+</div>
+
+<div class="instrument-display">
+<span class="detected-label">DETECTED CLASS</span>
+<div class="instrument-name" id="instrument-name">READY</div>
+
+<div class="confidence-container">
+<div class="confidence-info">
+<span>CONFIDENCE</span>
+<span id="confidence-val">0.00%</span>
+</div>
+<div class="progress-bg">
+<div class="progress-fill" id="confidence-bar"></div>
+</div>
+</div>
+</div>
+
+<div class="footer-info">
+<span>BACKEND: PYTHON + LABVIEW</span>
+<span>STATUS: ACTIVE</span>
+</div>
+
+</div>
+</div>
+<script>
+let selectedFileName = "";
+
+function openFileDialog() {
+    document.getElementById("fileInput").click();
+}
+
+document.getElementById("fileInput").addEventListener("change", function (e) {
+    if (e.target.files.length === 0) return;
+
+    selectedFileName = e.target.files[0].name;
+    document.getElementById("audio-path").value = selectedFileName;
+
+    document.getElementById("instrument-name").innerText = "READY";
+    document.getElementById("confidence-val").innerText = "0.00%";
+    document.getElementById("confidence-bar").style.width = "0%";
+});
+
+async function scan() {
+    const fileName = document.getElementById("audio-path").value;
+
+    if (!fileName) {
+        alert("Te rog selectează un fișier WAV!");
+        return;
+    }
+
+    document.getElementById("instrument-name").innerText = "SCANNING...";
+    document.getElementById("instrument-name").style.color = "#ffffff";
+    document.getElementById("status-text").innerText = "PROCESSING";
+
+    try {
+        const response = await fetch("get_data?path=" + encodeURIComponent(fileName));
+
+        if (!response.ok) throw new Error("Serverul LabVIEW nu a răspuns.");
+
+        const data = await response.json();
+        console.log("Rezultat primit:", data);
+
+        if (!data || !data.instrument) {
+            throw new Error("Date primite invalide (răspuns gol).");
+        }
+
+        if (data.instrument.includes("ERROR")) {
+            document.getElementById("instrument-name").innerText = "ERROR";
+            document.getElementById("instrument-name").style.color = "red";
+            alert("Eroare Python: " + data.instrument);
+            return;
+        }
+
+        document.getElementById("instrument-name").innerText = data.instrument.toUpperCase();
+        document.getElementById("instrument-name").style.color = "#ffffff";
+
+        let conf = parseFloat(data.confidence);
+        if (conf <= 1) conf *= 100;
+
+        document.getElementById("confidence-val").innerText = conf.toFixed(2) + "%";
+        document.getElementById("confidence-bar").style.width = conf + "%";
+        document.getElementById("status-text").innerText = "COMPLETE";
+
+    } catch (err) {
+        console.error(err);
+        document.getElementById("instrument-name").innerText = "ERROR";
+        document.getElementById("instrument-name").style.color = "red";
+        alert("Problemă: " + err.message);
+    }
+}
+</script>
+
+</body>
+</html>

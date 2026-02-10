@@ -1,0 +1,13 @@
+Set Date,Clasa (Instrument),Numar Fisiere
+Train,chitara,56
+Train,pian,56
+Train,tobe,56
+Train,vioara,56
+Validation,chitara,12
+Validation,pian,12
+Validation,tobe,12
+Validation,vioara,12
+Test,chitara,12
+Test,pian,12
+Test,tobe,12
+Test,vioara,12

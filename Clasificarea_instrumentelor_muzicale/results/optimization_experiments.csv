@@ -1,0 +1,11 @@
+Experiment,Accuracy,F1_Score,Duration_min,Observations,F1,Latency_ms
+Baseline,0.9688,0.9692,0.5,"Rulare finala cu date reale, noise si scaler",,
+Exp 1 ,0.9844,0.9844,0.8,"Rulare finala cu date reale, noise si scaler",,
+Exp 2 ,1,1,1.1,"Rulare finala cu date reale, noise si scaler",,
+Exp 3,0.9531,0.9535,0.8,"Rulare finala cu date reale, noise si scaler",,
+Exp 4,0.9844,0.9844,0.7,"Rulare finala cu date reale, noise si scaler",,
+Exp 5 ,0.9844,0.9844,0.7,"Rulare finala cu date reale, noise si scaler",,
+Exp 6,0.9688,0.9692,1,"CNN cu Dropout, BatchNormalization si Data Augmentation. Generare grafice documentatie.",,
+Exp 7,0.9844,0.9844,0.9,"CNN optimizat cu Data Augmentation. Generare automata CSV, JSON si grafice performanta.",,
+Exp 8,1,1,0.8,,,
+Exp 9,0.9741,0.9729,0.9,,,
