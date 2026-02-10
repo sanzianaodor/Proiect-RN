@@ -1,8 +1,0 @@
-ERROR REPORT (Exp 5 - Final Run)
-Stress Test Noise: 0.65
-35.wav | Real: pian -> Pred: pian
-rec_27.wav | Real: pian -> Pred: pian
-rec_31.wav | Real: pian -> Pred: pian
-10.wav | Real: chitara -> Pred: vioara
-rec_13.wav | Real: pian -> Pred: pian
-40.wav | Real: pian -> Pred: pian
