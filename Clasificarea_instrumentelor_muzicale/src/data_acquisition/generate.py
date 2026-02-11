@@ -4,8 +4,6 @@ import librosa
 import datetime
 import sys
 
-# Hack pentru a importa config.py din folderul părinte (src/preprocessing)
-# Adaugă calea '../preprocessing' la sistem
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'preprocessing')))
 
 try:
@@ -15,7 +13,7 @@ except ImportError:
     print("⚠️ Config nu a fost găsit via import. Se folosesc căi relative.")
     BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     RAW_DATA_DIR = os.path.join(BASE_DIR, "data", "raw")
-    CLASSES = ['chitara', 'pian', 'tobe', 'vioara'] # Sau numele folderelor tale
+    CLASSES = ['chitara', 'pian', 'tobe', 'vioara']
 
 def get_source_info(label):
     """
