@@ -79,7 +79,7 @@ def step_2_split_no_augment():
                     utils.save_audio(utils.change_pitch(signal, 2), dest_folder, filename.replace('.wav', '_pUp.wav'))
                     utils.save_audio(utils.change_pitch(signal, -2), dest_folder, filename.replace('.wav', '_pDown.wav'))
 
-        # AICI AM MODIFICAT: augment=False peste tot
+        
         process_subset(train_files, config.TRAIN_DIR, augment=False)
         process_subset(val_files, config.VAL_DIR, augment=False)
         process_subset(test_files, config.TEST_DIR, augment=False)
