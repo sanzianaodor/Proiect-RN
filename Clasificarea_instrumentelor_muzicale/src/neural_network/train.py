@@ -3,7 +3,7 @@ import numpy as np
 import librosa
 import tensorflow as tf
 import pickle
-import pandas as pd  # <--- NOU: Pentru salvare CSV
+import pandas as pd 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 import matplotlib.pyplot as plt
@@ -18,7 +18,7 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 DATA_DIR = os.path.join(BASE_DIR, "data", "raw")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 DOCS_DIR = os.path.join(BASE_DIR, "docs")
-RESULTS_DIR = os.path.join(BASE_DIR, "results")  # <--- NOU: Folder rezultate
+RESULTS_DIR = os.path.join(BASE_DIR, "results")  
 SCALER_PATH = os.path.join(BASE_DIR, "config", "preprocessing_params.pkl")
 
 # Creare foldere necesare
@@ -163,7 +163,7 @@ def main():
         verbose=1
     )
 
-    # 7. Salvare Istoric CSV (CERINTA NOUA)
+    # 7. Salvare Istoric CSV
     save_training_history(history)
 
     # 8. Evaluare si Salvare Model
