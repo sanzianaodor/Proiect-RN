@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import librosa
 import librosa.display
 import numpy as np
-import config  # <--- AICI AM CORECTAT (Import direct)
+import config 
 
 # Ne asiguram ca folderul de documentatie exista
 DOCS_DIR = os.path.join(config.BASE_DIR, "docs", "datasets")
@@ -103,9 +103,9 @@ def main():
     generate_statistics_csv()
     
     # 2. Cautam 2 fisiere de test pentru grafic
-    # Luam primele 2 clase din lista (ex: Chitara si Pian/Tobe)
-    clasa_1 = config.CLASSES[0] # ar trebui sa fie 'guitar' sau 'chitara'
-    clasa_2 = config.CLASSES[2] # ar trebui sa fie 'drums' sau 'tobe'
+    # Luam primele 2 clase din lista
+    clasa_1 = config.CLASSES[0] 
+    clasa_2 = config.CLASSES[2] 
     
     path_1 = glob.glob(os.path.join(config.TRAIN_DIR, clasa_1, "*.wav"))
     path_2 = glob.glob(os.path.join(config.TRAIN_DIR, clasa_2, "*.wav"))
