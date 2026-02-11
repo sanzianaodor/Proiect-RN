@@ -28,8 +28,6 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(CURRENT_DIR, '..', '..'))
 
 DATA_ROOT = os.path.join(PROJECT_ROOT, "data")
-#MODEL_PATH = os.path.join(PROJECT_ROOT, "models", "optimized_model.h5")
-# Comentează linia veche și pune-o pe aceasta:
 MODEL_PATH = r"C:\Clasificarea_instrumentelor_muzicale\models\optimized_model.h5"
 SCALER_PATH = os.path.join(PROJECT_ROOT, "config", "preprocessing_params.pkl")
 CLASSES_PATH = os.path.join(PROJECT_ROOT, "config", "classes.npy")
